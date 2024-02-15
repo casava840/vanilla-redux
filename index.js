@@ -1,3 +1,5 @@
+import { configureStore } from '@reduxjs/toolkit';
+
 //DOM 직접 설정
 const divToggle = document.querySelector('.toggle');
 const counter = document.querySelector('h1');
@@ -43,3 +45,22 @@ function reducer(state = initialState, action) {
             return state;
     }
 }
+
+const store = configureStore({
+    reducer: reducer
+});
+
+const render = () => {
+    const state = store.getState(); //현재 상태를 불러옵니다.
+    //토글 처리
+    if (state.toggle) {
+        divToggle.classList.add('active');
+    } else {
+        divToggle.classList.remove('active');
+    }
+    //카운터 처리
+    counter.innerText = state.counter;
+}
+
+render();
+store.subscribe(render);
