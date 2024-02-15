@@ -12,9 +12,9 @@ const INCREASE = 'INCREASE';
 const DECREASE = 'DECREASE';
 
 //액션 이름을 사용해서 액션 객체를 만드는 액션 생성 함수
-const toggleSwitch = () => {{ type: TOGGLE_SWITCH}};
-const increase = () => {{ type: INCREASE, difference}}
-const decrease = () => {{ type: DECREASE }};
+const toggleSwitch = () => ({ type: TOGGLE_SWITCH});
+const increase = (difference) => ({ type: INCREASE, difference});
+const decrease = () => ({ type: DECREASE });
 
 //초깃값 설정
 const initialState = {
@@ -64,3 +64,13 @@ const render = () => {
 
 render();
 store.subscribe(render);
+
+divToggle.onclick = () => {
+    store.dispatch(toggleSwitch());
+};
+btnIncrease.onclick = () => {
+    store.dispatch(increase(1));
+};
+btnDecrease.onclick = () => {
+    store.dispatch(decrease());
+};
